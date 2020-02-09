@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+<table>
+<th>Power Exponent Calculator</th>
+<tr>
+
+<td>
+Base Number: 
+</td>
+
+<td>
+<input type="text" id="baseId" name="base">
+</td>
+
+
+
+</tr>
+
+<tr>
+
+<td>
+Exponent Number:  
+</td>
+
+<td>
+<input type="text" id="exponentId" name="exponent">
+</td>
+
+
+</tr>
+
+<tr>
+<td>
+		<input type="submit" id="submit" value="Get Result">
+
+</td>
+<td>
+		<input type="text" id="result" name="result">
+
+</td>
+
+</tr>
+</table>
+
+
+
+</div>
+
+<script>		
+$(document).ready(function(){
+  $("#submit").click(function(){
+
+
+    var result=document.getElementById("result").value
+console.log(result)
+ var baseid=document.getElementById("baseId").value
+ var exponentid=document.getElementById("exponentId").value
+
+   
+	url="http:localhost:8080/calculator/compute"
+	data=JSON.stringify({
+			"baseValue":baseid,
+			"exponentValue":exponentid})
+
+
+$.ajax({
+  url:url,
+  type:"POST",
+  data:data,
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  success: function(data){
+    
+
+document.getElementById("result").value=data;
+  }
+})
+
+  });
+});
+
+</script>
+
+
+
+
+
+</body>
+</html>
